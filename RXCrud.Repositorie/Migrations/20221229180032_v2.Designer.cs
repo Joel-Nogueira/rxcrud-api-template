@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RXCrud.Data.Context;
@@ -11,9 +12,10 @@ using RXCrud.Data.Context;
 namespace RXCrud.Data.Migrations
 {
     [DbContext(typeof(RXCrudContext))]
-    partial class RXCrudContextModelSnapshot : ModelSnapshot
+    [Migration("20221229180032_v2")]
+    partial class v2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,26 +23,6 @@ namespace RXCrud.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("RXCrud.Domain.Entities.Cidade", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IdEstado")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdEstado");
-
-                    b.ToTable("Cidade");
-                });
 
             modelBuilder.Entity("RXCrud.Domain.Entities.Estado", b =>
                 {
@@ -98,22 +80,6 @@ namespace RXCrud.Data.Migrations
                             NomeAcesso = "gleryston",
                             Senha = "nQm92qSBD7TDIhkt5co1YA=="
                         });
-                });
-
-            modelBuilder.Entity("RXCrud.Domain.Entities.Cidade", b =>
-                {
-                    b.HasOne("RXCrud.Domain.Entities.Estado", "Estado")
-                        .WithMany("Cidades")
-                        .HasForeignKey("IdEstado")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Estado");
-                });
-
-            modelBuilder.Entity("RXCrud.Domain.Entities.Estado", b =>
-                {
-                    b.Navigation("Cidades");
                 });
 #pragma warning restore 612, 618
         }

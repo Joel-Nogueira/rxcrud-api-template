@@ -9,6 +9,8 @@ namespace RXCrud.CrossCutting
         public static void RegisterService(this IServiceCollection services)
         {
             services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IEstadoService, EstadoService>();
+            services.AddScoped<ICidadeService, CidadeService>();
         }
     }
 }

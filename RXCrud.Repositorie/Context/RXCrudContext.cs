@@ -17,6 +17,8 @@ namespace RXCrud.Data.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new UsuarioConfig());
+            modelBuilder.ApplyConfiguration(new EstadoConfig());
+            modelBuilder.ApplyConfiguration(new CidadeConfig());
 
             IList<Usuario> usuarios = new List<Usuario>();
             usuarios.Add(new Usuario(Guid.Parse("d36edf0e-200a-4732-b5fa-9a850a704a0f"), "Gleryston Matos", "glerystonmatos@rxcrud.com.br", "gleryston", "nQm92qSBD7TDIhkt5co1YA=="));
